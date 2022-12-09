@@ -42,7 +42,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       text: ResWelcomeScreen.register,
                       onPressed: () {},
                       fillColor: kPrimaryColor,
-                      textColor: Colors.white,
+                      textColor: Colors.green,
                     ),
                     // hSpace(space),
                     // primaryButton(
