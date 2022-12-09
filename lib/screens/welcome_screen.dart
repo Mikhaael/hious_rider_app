@@ -13,7 +13,7 @@ class WelcomeScreen extends StatefulWidget {
   State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
-const double space = 18.0;
+const double space = 12.0;
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
