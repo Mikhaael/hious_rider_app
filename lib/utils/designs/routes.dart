@@ -1,6 +1,7 @@
-// import 'dart:js';
+
 
 import 'package:flutter/cupertino.dart';
+import 'package:hious_rider_app/screens/login_screen.dart';
 import 'package:hious_rider_app/screens/splash_screen.dart';
 import 'package:hious_rider_app/screens/welcome_screen.dart';
 
@@ -17,6 +18,7 @@ class Routes {
 
   static Map<String, Widget Function(BuildContext)> routes = {
     splash: (context) => const SplashScreen(),
-    welcome: (context) => const WelcomeScreen()
+    welcome: (context) => const WelcomeScreen(),
+    login: (context) => const LoginScreen(),
   };
 }

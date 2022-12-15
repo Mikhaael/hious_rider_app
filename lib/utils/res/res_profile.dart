@@ -12,13 +12,13 @@ class ResWelcomeScreen {
 class ResLoginScreen {
   ResLoginScreen._();
 
-  static const String signYouIn = "Let's Sign You In";
+  static const String signYouIn = "Let's Sign you in";
   static const String welcomeBack = "Welcome back, we are glad you came back.";
   static const String email = "Email";
   static const String password = "Password";
-  static const String forgorPassword = "Forgot password";
+  static const String forgotPassword = "Forgot password";
   static const String signIn = "Sign in";
-  static const orContinueWith = "Or continue with";
+  static const String orContinueWith = "Or continue with";
 }
 
 class ResRegisterScreen {

@@ -1,7 +1,7 @@
 class Assets {
   Assets._();
 
-  static const String hiousLogo = "asstes/images/hious_logo.png";
+  static const String hiousLogo = "assets/images/hious_logo.png";
   static const String deliveryMan = "assets/images/delivery_man.png";
   static const String forgetPassword = "assets/images/forget_password.png";
   static const String passwordChanged = "assets/images/password_changed.png";

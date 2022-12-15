@@ -5,6 +5,7 @@ import 'package:hious_rider_app/utils/designs/assets.dart';
 import 'package:hious_rider_app/utils/designs/colors.dart';
 import 'package:hious_rider_app/utils/res/res_profile.dart';
 import 'package:hious_rider_app/utils/designs/styles.dart';
+import '../utils/designs/routes.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -13,7 +14,7 @@ class WelcomeScreen extends StatefulWidget {
   State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
-const double space = 12.0;
+const double space = 18.0;
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
@@ -22,7 +23,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       child: Scaffold(
         body: Material(
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 14.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -35,22 +36,27 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   style: sWelcomeScreenBigText,
                 ),
                 vSpace(space),
+                Text(
+                  ResWelcomeScreen.welcomeMessage2,
+                  style: sWelcomeScreenSmallText,
+                ),
+                vSpace(space * 3),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     primaryButton(
                       text: ResWelcomeScreen.register,
-                      onPressed: () {},
+                      onClick: () {},
                       fillColor: kPrimaryColor,
-                      textColor: Colors.green,
+                      textColor: Colors.white,
                     ),
                     // hSpace(space),
-                    // primaryButton(
-                    //   text: ResWelcomeScreen.login,
-                    //   onPressed: () {},
-                    //   fillColor: Colors.transparent,
-                    //   textColor: Colors.black,
-                    // ),
+                    primaryButton(
+                      text: ResWelcomeScreen.login,
+                      onClick: () => Navigator.pushNamed(context, Routes.login),
+                      fillColor: Colors.transparent,
+                      textColor: Colors.black,
+                    ),
                   ],
                 )
               ],

@@ -32,3 +32,26 @@ final sButtonTextStyle = GoogleFonts.poppins(
     color: kButtonTextColor,
   ),
 );
+
+final sLoginScreenText1 = GoogleFonts.poppins(
+  textStyle: const TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 28,
+    color: kPrimaryColor,
+  ),
+);
+
+final sLoginScreenText2 = GoogleFonts.poppins(
+  textStyle: const TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    color: kTextColor2
+  ),
+);
+
+final sHintTextStyle = GoogleFonts.poppins(
+  textStyle: const TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 14
+  ),
+);
