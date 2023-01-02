@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hious_rider_app/components/spacers.dart';
-import 'package:hious_rider_app/utils/designs/colors.dart';
-import 'package:hious_rider_app/utils/res/res_profile.dart';
-import 'package:hious_rider_app/components/buttons.dart';
-import '../utils/enums.dart';
-import '../utils/designs/dimens.dart';
-import '../utils/designs/styles.dart';
-import '../utils/designs/assets.dart';
-import '../components/text_field.dart';
+import '../components/buttons.dart';
 import '../components/or.dart';
+import '../components/spacers.dart';
+import '../components/text_field.dart';
+import '../utils/auth/auth_state.dart';
+import '../utils/designs/assets.dart';
+import '../utils/designs/colors.dart';
+import '../utils/designs/dimens.dart';
+import '../utils/designs/routes.dart';
+import '../utils/designs/styles.dart';
+import '../utils/enums.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../utils/res/res_profile.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -19,29 +21,22 @@ class LoginScreen extends ConsumerStatefulWidget {
   @override
   ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
+
 const double space = 18;
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
-  bool _obscured = true;
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   var state = LoginScreenState.login;
   final form = GlobalKey<FormState>();
 
-  void _switch() {
-    setState(() {
-      if (state == LoginScreenState.login) {
-        state = LoginScreenState.signup;
-      } else {
-        state = LoginScreenState.login;
-      }
-    },);
-  }
+  get nameController => null;
 
   @override
   Widget build(BuildContext context) {
-    final isLogin = state == LoginScreenState.login;
+
+    final state = ref.watch(loginState);
 
     return Scaffold(
       appBar: AppBar(
@@ -59,7 +54,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         child: Form(
           key: form,
           child: ListView(
-            padding: const EdgeInsets.symmetric(
+            padding:  const EdgeInsets.symmetric(
               horizontal: 40.0,
               vertical: sPadding * 2,
             ),
@@ -67,7 +62,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  isLogin ? ResLoginScreen.signYouIn : ResRegisterScreen.register,
+                  ResLoginScreen.signYouIn,
                   style: sLoginScreenText1,
                 ),
               ),
@@ -75,84 +70,79 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  isLogin ? ResLoginScreen.welcomeBack : ResRegisterScreen.yourEmail,
+                  ResLoginScreen.welcomeBack,
                   style: sLoginScreenText2,
                 ),
               ),
               vSpace(space * 2),
-              if(!isLogin) ...{
                 EmailField(
-                  state: TextFieldState(
-                    label: ResRegisterScreen.emailOrPhone,
-                    controller: emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    textInputAction: TextInputAction.next,
-                  ),
-                ),
-              },
-              EmailField(
                   state: TextFieldState(
                     label: ResLoginScreen.email,
                     controller: emailController,
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
-                  ),
-              ),
-              vSpace(space),
-              // PasswordField(
-              //   state: TextFieldState(
-              //     controller: passwordController,
-              //     keyboardType: TextInputType.visiblePassword,
-              //   ),
-              // ),
-              TextFormField(
-                controller: passwordController,
-                keyboardType: TextInputType.visiblePassword,
-                textInputAction: TextInputAction.next,
-                obscureText: _obscured,
-                maxLength: 12,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.grey[200],
-                  prefixIcon: const Icon(Icons.lock, size: 20.0,),
-                  suffixIcon: GestureDetector(
-                    onTap: () {
-                      _obscured = _obscured ? false : true;
-                      setState(() {});
-                    },
-                    child: Icon(
-                        _obscured ? Icons.visibility_off : Icons.visibility
-                    ),
-                  ),
-                  hintText: ResLoginScreen.password,
-                  hintStyle: sHintTextStyle,
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 25,
-                    vertical: 20.8,
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                        Radius.circular(13)
-                    ),
-                    borderSide: BorderSide(color: Colors.transparent, width: 3.0),
-                  ),
-                  enabledBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(13),
-                    ),
-                    borderSide: BorderSide(
-                        color: Colors.transparent, width: 3.0
-                    ),
+                    validator: (value) {
+                        if (value?.isEmpty == true) {
+                          return 'Email cannot be empty';
+                        }
+                        return null;
+                      }
                   ),
                 ),
+              vSpace(space * 0.8),
+                PasswordField(
+                  state: TextFieldState(
+                    label: ResLoginScreen.password,
+                    controller: passwordController,
+                    keyboardType: TextInputType.visiblePassword,
+                    textInputAction: TextInputAction.next,
+                    validator: (value) {
+                      if (value?.isEmpty == true) {
+                        return 'Password cannot be empty';
+                      }
+                      return null;
+                    }
+                  ),
+                ),
+              vSpace(space * 0.3),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.password1);
+                    },
+                    child: Text(
+                      ResLoginScreen.forgotPassword,
+                      style: sLoginScreenText2.copyWith(
+                          fontSize: 12,
+                          color: kPrimaryColor
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              vSpace(space * 7),
-              primaryButton(
-                  text: isLogin ? ResLoginScreen.signIn : ResRegisterScreen.register,
-                  onClick: () {},
-                  fillColor: kPrimaryColor,
-                  textColor: Colors.white,
+              vSpace(space * 13.0),
+              secondaryButton(
+                text: ResLoginScreen.signIn,
+                onClick: () {},
+                fillColor: kPrimaryColor,
+                textColor: Colors.white,
               ),
+              // registerButton(
+              //     text: ResLoginScreen.signIn,
+              //     onClick: () => state.onLoginClick(
+              //         form: form,
+              //         ref: ref,
+              //         nameController: nameController,
+              //         emailController: emailController,
+              //         passwordController: passwordController,
+              //         context: context,
+              //     ),
+              //     fillColor: kPrimaryColor,
+              //     textColor: Colors.white,
+              //     isLoading: state.isLoginLoading,
+              // ),
               vSpace(space * 1.5),
               const Or(),
               vSpace(space * 0.8),
@@ -160,19 +150,39 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   socialButton(
-                    image: isLogin ? Assets.googleLogo : Assets.googleLogo,
+                    image: Assets.googleLogo,
                     onClick: () {},
                   ),
                   hSpace(space * 0.56),
                   socialButton(
-                    image: isLogin ? Assets.twitterLogo : Assets.twitterLogo,
+                    image: Assets.twitterLogo,
                     onClick: () {},
                   ),
                   hSpace(space * 0.56),
                   socialButton(
-                    image: isLogin ? Assets.facebookLogo : Assets.facebookLogo,
+                    image: Assets.facebookLogo,
                     onClick: () {},
                   ),
+                ],
+              ),
+              vSpace(space * 2.9),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    ResLoginScreen.dontHaveAnAccount,
+                    style: sLoginScreenText2,
+                  ),
+                  hSpace(space / 9),
+                  InkWell(
+                    onTap: () => Navigator.pushNamed(context, Routes.register),
+                    child: Text(
+                      ResLoginScreen.register,
+                      style: sLoginScreenText2.copyWith(
+                        color: kPrimaryColor
+                      ),
+                    ),
+                  )
                 ],
               )
             ],
@@ -180,5 +190,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         ),
       ),
     );
+  }
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 }

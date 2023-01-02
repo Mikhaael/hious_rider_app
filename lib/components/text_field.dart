@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hious_rider_app/components/spacers.dart';
 // import 'package:hious_rider_app/utils/designs/dimens.dart';
 import 'package:hious_rider_app/utils/designs/styles.dart';
+import 'package:hious_rider_app/utils/res/res_profile.dart';
+
+import '../utils/designs/colors.dart';
 // import 'package:hious_rider_app/utils/res/res_profile.dart';
 
 
@@ -90,7 +94,7 @@ class EmailField extends StatelessWidget {
         filled: true,
         fillColor: Colors.grey[200],
         hintText: state.label,
-        prefixIcon: const Icon(Icons.email, size: 20.0,),
+        // prefixIcon: const Icon(Icons.email, size: 20.0,),
         hintStyle: sHintTextStyle,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 25,
@@ -100,7 +104,7 @@ class EmailField extends StatelessWidget {
           borderRadius: BorderRadius.all(
             Radius.circular(13)
           ),
-          borderSide: BorderSide(color: Colors.transparent, width: 3.0),
+          borderSide: BorderSide(color: kPrimaryColor, width: 1.0),
         ),
         enabledBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
@@ -116,37 +120,127 @@ class EmailField extends StatelessWidget {
     );
   }
 }
-//
-// class PasswordField extends StatefulWidget {
-//   final TextFieldState state;
-//   const PasswordField({Key? key, required this.state}) : super(key: key);
-//
-//   @override
-//   State<PasswordField> createState() => _PasswordFieldState();
-// }
-//
-// class _PasswordFieldState extends State<PasswordField> {
-//   bool _obscured = true;
-//   @override
-//   Widget build(BuildContext context) {
-//     final state = widget.state;
-//     return EmailField(
-//         state: state.copyWith(
-//           label: (state.label.isEmpty) ? ResLoginScreen.password : state.label,
-//           obscureText: _obscured,
-//           keyboardType: TextInputType.visiblePassword,
-//           maxLines: 8,
-//           icon: GestureDetector(
-//             onTap: () {
-//               _obscured = _obscured ? false : true;
-//               setState(() {});
-//             },
-//             child: Icon(
-//               _obscured ? Icons.visibility_off : Icons.visibility
-//             ),
-//           )
-//         )
-//     );
-//   }
-// }
 
+class PasswordField extends StatefulWidget {
+  final TextFieldState state;
+
+  const PasswordField({Key? key, required this.state}) : super(key: key);
+
+  @override
+  State<PasswordField> createState() => _PasswordFieldState();
+}
+
+class _PasswordFieldState extends State<PasswordField> {
+  bool _obscured = true;
+
+  @override
+  Widget build(BuildContext context) {
+    final state = widget.state;
+
+    return EmailField(
+      state: state.copyWith(
+        label: (state.label.isEmpty) ? ResLoginScreen.password : state.label,
+        obscureText: _obscured,
+        keyboardType: TextInputType.visiblePassword,
+        icon: GestureDetector(
+          onTap: () {
+            _obscured = _obscured ? false : true;
+            setState(() {});
+          },
+          child: Icon(
+            _obscured ? Icons.visibility_off : Icons.visibility,
+            color: Colors.black,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class OtpInput extends StatelessWidget {
+  final TextEditingController controller;
+
+  const OtpInput(this.controller, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 58.0,
+      width: 58.0,
+      child: TextField(
+        textAlign: TextAlign.center,
+        keyboardType: TextInputType.number,
+        controller: controller,
+        maxLength: 1,
+        style: sLoginScreenText1.copyWith(
+          color: Colors.white,
+          fontWeight: FontWeight.w500,
+        ),
+        cursorColor: Colors.white,
+        decoration: const InputDecoration(
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 15.0,
+            vertical: 15.0,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+                Radius.circular(8.5)
+            ),
+            borderSide: BorderSide(color: Color(0xFF9FA8DA), width: 1.2),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(8.5),
+            ),
+            borderSide: BorderSide(
+                color: Color(0xFF9FA8DA), width: 1.2
+            ),
+          ),
+          counterText: '',
+        ),
+        onChanged: (value) {
+          if (value.length == 1) {
+            FocusScope.of(context).nextFocus();
+          }
+        },
+      ),
+    );
+  }
+}
+
+class OtpFieldInput extends StatefulWidget {
+  const OtpFieldInput({Key? key}) : super(key: key);
+
+  @override
+  State<OtpFieldInput> createState() => _OtpFieldInputState();
+}
+
+const double space = 18;
+class _OtpFieldInputState extends State<OtpFieldInput> {
+
+  final TextEditingController _fieldOne = TextEditingController();
+  final TextEditingController _fieldTwo = TextEditingController();
+  final TextEditingController _fieldThree = TextEditingController();
+  final TextEditingController _fieldFour = TextEditingController();
+
+  String? _otp;
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        OtpInput(_fieldOne), // auto focus
+        hSpace(space * 1.2),
+        OtpInput(_fieldTwo,),
+        hSpace(space * 1.2),
+        OtpInput(_fieldThree),
+        hSpace(space * 1.2),
+        OtpInput(_fieldFour),
+        hSpace(space * 1.2),
+      ],
+    );
+  }
+}

@@ -19,6 +19,13 @@ dependencies:
   flutter_riverpod: ^1.0.4
   hovering: ^1.0.4
 
+  # Firebase Database
+  firebase_core: ^2.4.0
+  firebase_auth: ^4.2.1
+  google_sign_in: ^5.4.2
+  firebase_database: ^10.0.7
+  flutter_facebook_auth: ^4.4.1+1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

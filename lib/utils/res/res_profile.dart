@@ -16,9 +16,12 @@ class ResLoginScreen {
   static const String welcomeBack = "Welcome back, we are glad you came back.";
   static const String email = "Email";
   static const String password = "Password";
-  static const String forgotPassword = "Forgot password";
+  static const String forgotPassword = "Forgot password?";
   static const String signIn = "Sign in";
   static const String orContinueWith = "Or continue with";
+  static const String dontHaveAnAccount = "Don't have an account?";
+  static const String register = "Register";
+
 }
 
 class ResRegisterScreen {
@@ -26,9 +29,11 @@ class ResRegisterScreen {
 
   static const String register = "Register";
   static const String yourEmail =
-      "Enter your email or phone number to \n create an account";
+      "Enter your email or phone number to\ncreate an account";
   static const String emailOrPhone = "Email or Phone number";
   static const String nextPage = "Continue";
+  static const String haveAnAccount = "Already have an account?";
+  static const String login = "Login";
   static const String checkMail = "Check mail";
   static const String digitCode =
       "Enter the 4-digits code sent to \n your mail to verify your email";
@@ -44,7 +49,7 @@ class ResPasswordResetScreen1 {
 
   static const String forgotPassword = "Forgot password";
   static const String accountBack =
-      "Don’t worry, we will help you get your \n account back!";
+      "Don’t worry, we will help you get your\naccount back!";
   static const String email = "hious@gmail.com";
   static const String errorMessage = "Email not found, kindly confirm";
   static const String resetPassword = "Reset Password";

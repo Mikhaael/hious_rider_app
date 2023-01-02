@@ -1,1 +1,1 @@
-enum LoginScreenState { login, signup }
+enum LoginScreenState { login, register }

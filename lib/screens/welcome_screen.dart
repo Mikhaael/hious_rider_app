@@ -19,9 +19,8 @@ const double space = 18.0;
 class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Material(
+    return Scaffold(
+      body: SafeArea(
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 14.0),
             child: Column(
@@ -46,7 +45,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   children: [
                     primaryButton(
                       text: ResWelcomeScreen.register,
-                      onClick: () {},
+                      onClick: () => Navigator.pushNamed(context, Routes.register),
                       fillColor: kPrimaryColor,
                       textColor: Colors.white,
                     ),
@@ -62,7 +61,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ],
             ),
           ),
-        ),
+
       ),
     );
   }

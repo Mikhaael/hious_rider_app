@@ -1,10 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hious_rider_app/utils/designs/colors.dart';
 import 'package:hious_rider_app/utils/designs/routes.dart';
 
+import 'firebase_options.dart';
+
 void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(options: DefaultFirebaseOptions.android);
   runApp(const HiousRiderApp());
 }
 
