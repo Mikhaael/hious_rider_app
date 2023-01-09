@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hious_rider_app/components/sizes_helpers.dart';
 
 import '../components/buttons.dart';
 import '../components/or.dart';
@@ -53,9 +54,9 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
         child: Form(
           key: form,
           child: ListView(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 40.0,
-              vertical: sPadding * 2,
+            padding: EdgeInsets.symmetric(
+              horizontal: displayWidth(context) * 0.125,
+              vertical: displayHeight(context) * 0.05,
             ),
             children: [
               Align(
@@ -89,20 +90,20 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 ),
               ),
               vSpace(space * 13.0),
-              registerButton(
-                text: ResLoginScreen.signIn,
-                onClick: () => state.onLoginClick(
-                    form: form,
-                    ref: ref,
-                    nameController: nameController,
-                    emailController: emailOrPhoneController,
-                    passwordController: passwordController,
-                    context: context,
-                ),
-                fillColor: kPrimaryColor,
-                textColor: Colors.white,
-                isLoading: state.isLoginLoading,
-              ),
+              // registerButton(
+              //   text: ResLoginScreen.signIn,
+              //   onClick: () => state.onLoginClick(
+              //       form: form,
+              //       ref: ref,
+              //       nameController: nameController,
+              //       emailController: emailOrPhoneController,
+              //       passwordController: passwordController,
+              //       context: context,
+              //   ),
+              //   fillColor: kPrimaryColor,
+              //   textColor: Colors.white,
+              //   isLoading: state.isLoginLoading,
+              // ),
               secondaryButton(
                   text: ResRegisterScreen.nextPage,
                   onClick: () {
@@ -159,8 +160,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
       ),
     );
   }
-  
-  showDataAlert() {
+
+  Widget showDataAlert() {
     showDialog(
         context: context, 
         builder: (context) {

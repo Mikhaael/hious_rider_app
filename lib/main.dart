@@ -7,7 +7,7 @@ import 'package:hious_rider_app/utils/designs/routes.dart';
 
 import 'firebase_options.dart';
 
-void main() {
+void main()  {
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.android);
   runApp(const HiousRiderApp());

@@ -5,6 +5,7 @@ import 'package:hious_rider_app/utils/designs/assets.dart';
 import 'package:hious_rider_app/utils/designs/colors.dart';
 import 'package:hious_rider_app/utils/res/res_profile.dart';
 import 'package:hious_rider_app/utils/designs/styles.dart';
+import '../components/sizes_helpers.dart';
 import '../utils/designs/routes.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -22,7 +23,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Scaffold(
       body: SafeArea(
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 14.0),
+            padding: EdgeInsets.symmetric(
+              horizontal: displayWidth(context) * 0.125,
+              vertical: displayHeight(context) * 0.01,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [

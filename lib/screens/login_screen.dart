@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../components/buttons.dart';
 import '../components/or.dart';
+import '../components/sizes_helpers.dart';
 import '../components/spacers.dart';
 import '../components/text_field.dart';
 import '../utils/auth/auth_state.dart';
@@ -54,9 +55,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         child: Form(
           key: form,
           child: ListView(
-            padding:  const EdgeInsets.symmetric(
-              horizontal: 40.0,
-              vertical: sPadding * 2,
+            padding: EdgeInsets.symmetric(
+              horizontal: displayWidth(context) * 0.125,
+              vertical: displayHeight(context) * 0.05,
             ),
             children: [
               Align(
@@ -123,26 +124,26 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ],
               ),
               vSpace(space * 13.0),
-              secondaryButton(
-                text: ResLoginScreen.signIn,
-                onClick: () {},
-                fillColor: kPrimaryColor,
-                textColor: Colors.white,
-              ),
-              // registerButton(
-              //     text: ResLoginScreen.signIn,
-              //     onClick: () => state.onLoginClick(
-              //         form: form,
-              //         ref: ref,
-              //         nameController: nameController,
-              //         emailController: emailController,
-              //         passwordController: passwordController,
-              //         context: context,
-              //     ),
-              //     fillColor: kPrimaryColor,
-              //     textColor: Colors.white,
-              //     isLoading: state.isLoginLoading,
+              // secondaryButton(
+              //   text: ResLoginScreen.signIn,
+              //   onClick: () {},
+              //   fillColor: kPrimaryColor,
+              //   textColor: Colors.white,
               // ),
+              registerButton(
+                  text: ResLoginScreen.signIn,
+                  onClick: () => state.onLoginClick(
+                      form: form,
+                      ref: ref,
+                      nameController: nameController,
+                      emailController: emailController,
+                      passwordController: passwordController,
+                      context: context,
+                  ),
+                  fillColor: kPrimaryColor,
+                  textColor: Colors.white,
+                  isLoading: state.isLoginLoading,
+              ),
               vSpace(space * 1.5),
               const Or(),
               vSpace(space * 0.8),

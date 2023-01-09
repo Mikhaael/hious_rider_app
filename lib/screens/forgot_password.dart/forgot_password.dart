@@ -6,6 +6,7 @@ import 'package:hious_rider_app/utils/designs/assets.dart';
 import 'package:hious_rider_app/utils/designs/colors.dart';
 import 'package:hious_rider_app/utils/res/res_profile.dart';
 
+import '../../components/sizes_helpers.dart';
 import '../../components/text_field.dart';
 import '../../utils/designs/dimens.dart';
 import '../../utils/designs/styles.dart';
@@ -45,9 +46,9 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
         child: Form(
           key: form,
           child: ListView(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 40.0,
-              vertical: sPadding * 2,
+            padding: EdgeInsets.symmetric(
+              horizontal: displayWidth(context) * 0.125,
+              vertical: displayHeight(context) * 0.05,
             ),
             children: [
               const Image(
