@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "636309987955",
+    "project_id": "hious-rider-app",
+    "storage_bucket": "hious-rider-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:636309987955:android:287acfd0f4045479854006",
+        "android_client_info": {
+          "package_name": "com.example.hious_rider_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "636309987955-n5epbs3devq2su4giifp813etal0hcqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGqjiV9TtNyXJEhq5lxcKhZeoZX0nLtwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "636309987955-n5epbs3devq2su4giifp813etal0hcqv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "636309987955-0lc45f1fphnlr9jepdqq039su94rbvi5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hiousRiderApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
